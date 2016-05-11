@@ -17,5 +17,6 @@ ml> (exec 'import Stock, Sector, ListComprehension; s1 = ListComprehension(); s1
 ml> (exec 'import Stock, Sector, ListComprehension; s1 = ListComprehension(); s1.orderStocks()')
 
 For python lambda (part 5), running PythonListComprehension.py
+We tried mapp, but it didn't work. The parse code of 'mapp' is in lis.py
 
 For the Swift part, running mini-lisp.py will go through the file test_program.swift
