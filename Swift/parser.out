@@ -1,0 +1,1932 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    RBRACE
+    VALSTRING
+    LBRACE
+    SQUOTE
+    INT
+    BOOL
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statement
+Rule 3     statements -> statements statement
+Rule 4     statement -> expression
+Rule 5     statement -> variable_Dec
+Rule 6     statement -> variable_Reduce
+Rule 7     statement -> if_statement
+Rule 8     statement -> print
+Rule 9     variable_Reduce -> IDENTIFIER EQUALS expression
+Rule 10    variable_Dec -> LET IDENTIFIER EQUALS expression
+Rule 11    variable_Dec -> VAR IDENTIFIER EQUALS expression
+Rule 12    print -> PRINT LPAREN RPAREN
+Rule 13    print -> PRINT LPAREN IDENTIFIER RPAREN
+Rule 14    print -> PRINT LPAREN INTEGER RPAREN
+Rule 15    print -> PRINT LPAREN STRING RPAREN
+Rule 16    if_statement -> IF cond_statement code_section
+Rule 17    if_statement -> IF cond_statement code_section else_statement
+Rule 18    else_statement -> ELSE code_section
+Rule 19    else_statement -> if_statement
+Rule 20    code_section -> LCURLY statements RCURLY
+Rule 21    cond_statement -> thing booleanOP thing
+Rule 22    cond_statement -> TRUE
+Rule 23    cond_statement -> FALSE
+Rule 24    expression -> conjunction
+Rule 25    expression -> conjunction OR_OP expression
+Rule 26    conjunction -> equality
+Rule 27    conjunction -> AND_OP equality
+Rule 28    booleanOP -> equalityOP
+Rule 29    booleanOP -> relationOP
+Rule 30    equality -> relation
+Rule 31    equality -> relation equalityOP equality
+Rule 32    equalityOP -> EQ_OP
+Rule 33    equalityOP -> NE_OP
+Rule 34    relation -> addition
+Rule 35    relation -> addition relationOP relation
+Rule 36    relationOP -> LT_OP
+Rule 37    relationOP -> LE_OP
+Rule 38    relationOP -> GT_OP
+Rule 39    relationOP -> GE_OP
+Rule 40    addition -> term
+Rule 41    addition -> term additionOP addition
+Rule 42    additionOP -> PLUS
+Rule 43    additionOP -> MINUS
+Rule 44    term -> factor
+Rule 45    term -> factor multiOP term
+Rule 46    multiOP -> MULT
+Rule 47    multiOP -> DIV
+Rule 48    factor -> primary
+Rule 49    primary -> literal
+Rule 50    literal -> INTEGER
+Rule 51    literal -> STRING
+Rule 52    literal -> IDENTIFIER
+Rule 53    literal -> TRUE
+Rule 54    literal -> FALSE
+Rule 55    thing -> INTEGER
+Rule 56    thing -> IDENTIFIER
+Rule 57    thing -> STRING
+Rule 58    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND_OP               : 27
+BOOL                 : 
+DIV                  : 47
+ELSE                 : 18
+EQUALS               : 9 10 11
+EQ_OP                : 32
+FALSE                : 23 54
+GE_OP                : 39
+GT_OP                : 38
+IDENTIFIER           : 9 10 11 13 52 56
+IF                   : 16 17
+INT                  : 
+INTEGER              : 14 50 55
+LBRACE               : 
+LCURLY               : 20
+LET                  : 10
+LE_OP                : 37
+LPAREN               : 12 13 14 15
+LT_OP                : 36
+MINUS                : 43
+MULT                 : 46
+NE_OP                : 33
+OR_OP                : 25
+PLUS                 : 42
+PRINT                : 12 13 14 15
+RBRACE               : 
+RCURLY               : 20
+RPAREN               : 12 13 14 15
+SQUOTE               : 
+STRING               : 15 51 57
+TRUE                 : 22 53
+VALSTRING            : 
+VAR                  : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+addition             : 34 35 41
+additionOP           : 41
+booleanOP            : 21
+code_section         : 16 17 18
+cond_statement       : 16 17
+conjunction          : 24 25
+else_statement       : 17
+empty                : 
+equality             : 26 27 31
+equalityOP           : 28 31
+expression           : 4 9 10 11 25
+factor               : 44 45
+if_statement         : 7 19
+literal              : 49
+multiOP              : 45
+primary              : 48
+print                : 8
+program              : 0
+relation             : 30 31 35
+relationOP           : 29 35
+statement            : 2 3
+statements           : 1 3 20
+term                 : 40 41 45
+thing                : 21 21
+variable_Dec         : 5
+variable_Reduce      : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statement
+    (3) statements -> . statements statement
+    (4) statement -> . expression
+    (5) statement -> . variable_Dec
+    (6) statement -> . variable_Reduce
+    (7) statement -> . if_statement
+    (8) statement -> . print
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (10) variable_Dec -> . LET IDENTIFIER EQUALS expression
+    (11) variable_Dec -> . VAR IDENTIFIER EQUALS expression
+    (9) variable_Reduce -> . IDENTIFIER EQUALS expression
+    (16) if_statement -> . IF cond_statement code_section
+    (17) if_statement -> . IF cond_statement code_section else_statement
+    (12) print -> . PRINT LPAREN RPAREN
+    (13) print -> . PRINT LPAREN IDENTIFIER RPAREN
+    (14) print -> . PRINT LPAREN INTEGER RPAREN
+    (15) print -> . PRINT LPAREN STRING RPAREN
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    LET             shift and go to state 25
+    VAR             shift and go to state 20
+    IDENTIFIER      shift and go to state 16
+    IF              shift and go to state 4
+    PRINT           shift and go to state 5
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    statements                     shift and go to state 1
+    primary                        shift and go to state 2
+    relation                       shift and go to state 3
+    variable_Reduce                shift and go to state 6
+    addition                       shift and go to state 8
+    literal                        shift and go to state 10
+    program                        shift and go to state 11
+    statement                      shift and go to state 12
+    factor                         shift and go to state 13
+    print                          shift and go to state 14
+    variable_Dec                   shift and go to state 19
+    conjunction                    shift and go to state 21
+    term                           shift and go to state 22
+    if_statement                   shift and go to state 23
+    equality                       shift and go to state 24
+    expression                     shift and go to state 26
+
+state 1
+
+    (1) program -> statements .
+    (3) statements -> statements . statement
+    (4) statement -> . expression
+    (5) statement -> . variable_Dec
+    (6) statement -> . variable_Reduce
+    (7) statement -> . if_statement
+    (8) statement -> . print
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (10) variable_Dec -> . LET IDENTIFIER EQUALS expression
+    (11) variable_Dec -> . VAR IDENTIFIER EQUALS expression
+    (9) variable_Reduce -> . IDENTIFIER EQUALS expression
+    (16) if_statement -> . IF cond_statement code_section
+    (17) if_statement -> . IF cond_statement code_section else_statement
+    (12) print -> . PRINT LPAREN RPAREN
+    (13) print -> . PRINT LPAREN IDENTIFIER RPAREN
+    (14) print -> . PRINT LPAREN INTEGER RPAREN
+    (15) print -> . PRINT LPAREN STRING RPAREN
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    $end            reduce using rule 1 (program -> statements .)
+    LET             shift and go to state 25
+    VAR             shift and go to state 20
+    IDENTIFIER      shift and go to state 16
+    IF              shift and go to state 4
+    PRINT           shift and go to state 5
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    primary                        shift and go to state 2
+    relation                       shift and go to state 3
+    variable_Reduce                shift and go to state 6
+    addition                       shift and go to state 8
+    literal                        shift and go to state 10
+    statement                      shift and go to state 27
+    factor                         shift and go to state 13
+    print                          shift and go to state 14
+    variable_Dec                   shift and go to state 19
+    conjunction                    shift and go to state 21
+    term                           shift and go to state 22
+    if_statement                   shift and go to state 23
+    equality                       shift and go to state 24
+    expression                     shift and go to state 26
+
+state 2
+
+    (48) factor -> primary .
+
+    MULT            reduce using rule 48 (factor -> primary .)
+    DIV             reduce using rule 48 (factor -> primary .)
+    PLUS            reduce using rule 48 (factor -> primary .)
+    MINUS           reduce using rule 48 (factor -> primary .)
+    LT_OP           reduce using rule 48 (factor -> primary .)
+    LE_OP           reduce using rule 48 (factor -> primary .)
+    GT_OP           reduce using rule 48 (factor -> primary .)
+    GE_OP           reduce using rule 48 (factor -> primary .)
+    EQ_OP           reduce using rule 48 (factor -> primary .)
+    NE_OP           reduce using rule 48 (factor -> primary .)
+    OR_OP           reduce using rule 48 (factor -> primary .)
+    LET             reduce using rule 48 (factor -> primary .)
+    VAR             reduce using rule 48 (factor -> primary .)
+    IDENTIFIER      reduce using rule 48 (factor -> primary .)
+    IF              reduce using rule 48 (factor -> primary .)
+    PRINT           reduce using rule 48 (factor -> primary .)
+    AND_OP          reduce using rule 48 (factor -> primary .)
+    INTEGER         reduce using rule 48 (factor -> primary .)
+    STRING          reduce using rule 48 (factor -> primary .)
+    TRUE            reduce using rule 48 (factor -> primary .)
+    FALSE           reduce using rule 48 (factor -> primary .)
+    $end            reduce using rule 48 (factor -> primary .)
+    RCURLY          reduce using rule 48 (factor -> primary .)
+
+
+state 3
+
+    (30) equality -> relation .
+    (31) equality -> relation . equalityOP equality
+    (32) equalityOP -> . EQ_OP
+    (33) equalityOP -> . NE_OP
+
+    OR_OP           reduce using rule 30 (equality -> relation .)
+    LET             reduce using rule 30 (equality -> relation .)
+    VAR             reduce using rule 30 (equality -> relation .)
+    IDENTIFIER      reduce using rule 30 (equality -> relation .)
+    IF              reduce using rule 30 (equality -> relation .)
+    PRINT           reduce using rule 30 (equality -> relation .)
+    AND_OP          reduce using rule 30 (equality -> relation .)
+    INTEGER         reduce using rule 30 (equality -> relation .)
+    STRING          reduce using rule 30 (equality -> relation .)
+    TRUE            reduce using rule 30 (equality -> relation .)
+    FALSE           reduce using rule 30 (equality -> relation .)
+    $end            reduce using rule 30 (equality -> relation .)
+    RCURLY          reduce using rule 30 (equality -> relation .)
+    EQ_OP           shift and go to state 29
+    NE_OP           shift and go to state 30
+
+    equalityOP                     shift and go to state 28
+
+state 4
+
+    (16) if_statement -> IF . cond_statement code_section
+    (17) if_statement -> IF . cond_statement code_section else_statement
+    (21) cond_statement -> . thing booleanOP thing
+    (22) cond_statement -> . TRUE
+    (23) cond_statement -> . FALSE
+    (55) thing -> . INTEGER
+    (56) thing -> . IDENTIFIER
+    (57) thing -> . STRING
+
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 36
+    INTEGER         shift and go to state 34
+    IDENTIFIER      shift and go to state 31
+    STRING          shift and go to state 33
+
+    thing                          shift and go to state 35
+    cond_statement                 shift and go to state 32
+
+state 5
+
+    (12) print -> PRINT . LPAREN RPAREN
+    (13) print -> PRINT . LPAREN IDENTIFIER RPAREN
+    (14) print -> PRINT . LPAREN INTEGER RPAREN
+    (15) print -> PRINT . LPAREN STRING RPAREN
+
+    LPAREN          shift and go to state 38
+
+
+state 6
+
+    (6) statement -> variable_Reduce .
+
+    RCURLY          reduce using rule 6 (statement -> variable_Reduce .)
+    LET             reduce using rule 6 (statement -> variable_Reduce .)
+    VAR             reduce using rule 6 (statement -> variable_Reduce .)
+    IDENTIFIER      reduce using rule 6 (statement -> variable_Reduce .)
+    IF              reduce using rule 6 (statement -> variable_Reduce .)
+    PRINT           reduce using rule 6 (statement -> variable_Reduce .)
+    AND_OP          reduce using rule 6 (statement -> variable_Reduce .)
+    INTEGER         reduce using rule 6 (statement -> variable_Reduce .)
+    STRING          reduce using rule 6 (statement -> variable_Reduce .)
+    TRUE            reduce using rule 6 (statement -> variable_Reduce .)
+    FALSE           reduce using rule 6 (statement -> variable_Reduce .)
+    $end            reduce using rule 6 (statement -> variable_Reduce .)
+
+
+state 7
+
+    (53) literal -> TRUE .
+
+    MULT            reduce using rule 53 (literal -> TRUE .)
+    DIV             reduce using rule 53 (literal -> TRUE .)
+    PLUS            reduce using rule 53 (literal -> TRUE .)
+    MINUS           reduce using rule 53 (literal -> TRUE .)
+    LT_OP           reduce using rule 53 (literal -> TRUE .)
+    LE_OP           reduce using rule 53 (literal -> TRUE .)
+    GT_OP           reduce using rule 53 (literal -> TRUE .)
+    GE_OP           reduce using rule 53 (literal -> TRUE .)
+    EQ_OP           reduce using rule 53 (literal -> TRUE .)
+    NE_OP           reduce using rule 53 (literal -> TRUE .)
+    OR_OP           reduce using rule 53 (literal -> TRUE .)
+    LET             reduce using rule 53 (literal -> TRUE .)
+    VAR             reduce using rule 53 (literal -> TRUE .)
+    IDENTIFIER      reduce using rule 53 (literal -> TRUE .)
+    IF              reduce using rule 53 (literal -> TRUE .)
+    PRINT           reduce using rule 53 (literal -> TRUE .)
+    AND_OP          reduce using rule 53 (literal -> TRUE .)
+    INTEGER         reduce using rule 53 (literal -> TRUE .)
+    STRING          reduce using rule 53 (literal -> TRUE .)
+    TRUE            reduce using rule 53 (literal -> TRUE .)
+    FALSE           reduce using rule 53 (literal -> TRUE .)
+    $end            reduce using rule 53 (literal -> TRUE .)
+    RCURLY          reduce using rule 53 (literal -> TRUE .)
+
+
+state 8
+
+    (34) relation -> addition .
+    (35) relation -> addition . relationOP relation
+    (36) relationOP -> . LT_OP
+    (37) relationOP -> . LE_OP
+    (38) relationOP -> . GT_OP
+    (39) relationOP -> . GE_OP
+
+    EQ_OP           reduce using rule 34 (relation -> addition .)
+    NE_OP           reduce using rule 34 (relation -> addition .)
+    OR_OP           reduce using rule 34 (relation -> addition .)
+    LET             reduce using rule 34 (relation -> addition .)
+    VAR             reduce using rule 34 (relation -> addition .)
+    IDENTIFIER      reduce using rule 34 (relation -> addition .)
+    IF              reduce using rule 34 (relation -> addition .)
+    PRINT           reduce using rule 34 (relation -> addition .)
+    AND_OP          reduce using rule 34 (relation -> addition .)
+    INTEGER         reduce using rule 34 (relation -> addition .)
+    STRING          reduce using rule 34 (relation -> addition .)
+    TRUE            reduce using rule 34 (relation -> addition .)
+    FALSE           reduce using rule 34 (relation -> addition .)
+    $end            reduce using rule 34 (relation -> addition .)
+    RCURLY          reduce using rule 34 (relation -> addition .)
+    LT_OP           shift and go to state 41
+    LE_OP           shift and go to state 39
+    GT_OP           shift and go to state 42
+    GE_OP           shift and go to state 43
+
+    relationOP                     shift and go to state 40
+
+state 9
+
+    (54) literal -> FALSE .
+
+    MULT            reduce using rule 54 (literal -> FALSE .)
+    DIV             reduce using rule 54 (literal -> FALSE .)
+    PLUS            reduce using rule 54 (literal -> FALSE .)
+    MINUS           reduce using rule 54 (literal -> FALSE .)
+    LT_OP           reduce using rule 54 (literal -> FALSE .)
+    LE_OP           reduce using rule 54 (literal -> FALSE .)
+    GT_OP           reduce using rule 54 (literal -> FALSE .)
+    GE_OP           reduce using rule 54 (literal -> FALSE .)
+    EQ_OP           reduce using rule 54 (literal -> FALSE .)
+    NE_OP           reduce using rule 54 (literal -> FALSE .)
+    OR_OP           reduce using rule 54 (literal -> FALSE .)
+    LET             reduce using rule 54 (literal -> FALSE .)
+    VAR             reduce using rule 54 (literal -> FALSE .)
+    IDENTIFIER      reduce using rule 54 (literal -> FALSE .)
+    IF              reduce using rule 54 (literal -> FALSE .)
+    PRINT           reduce using rule 54 (literal -> FALSE .)
+    AND_OP          reduce using rule 54 (literal -> FALSE .)
+    INTEGER         reduce using rule 54 (literal -> FALSE .)
+    STRING          reduce using rule 54 (literal -> FALSE .)
+    TRUE            reduce using rule 54 (literal -> FALSE .)
+    FALSE           reduce using rule 54 (literal -> FALSE .)
+    $end            reduce using rule 54 (literal -> FALSE .)
+    RCURLY          reduce using rule 54 (literal -> FALSE .)
+
+
+state 10
+
+    (49) primary -> literal .
+
+    MULT            reduce using rule 49 (primary -> literal .)
+    DIV             reduce using rule 49 (primary -> literal .)
+    PLUS            reduce using rule 49 (primary -> literal .)
+    MINUS           reduce using rule 49 (primary -> literal .)
+    LT_OP           reduce using rule 49 (primary -> literal .)
+    LE_OP           reduce using rule 49 (primary -> literal .)
+    GT_OP           reduce using rule 49 (primary -> literal .)
+    GE_OP           reduce using rule 49 (primary -> literal .)
+    EQ_OP           reduce using rule 49 (primary -> literal .)
+    NE_OP           reduce using rule 49 (primary -> literal .)
+    OR_OP           reduce using rule 49 (primary -> literal .)
+    RCURLY          reduce using rule 49 (primary -> literal .)
+    LET             reduce using rule 49 (primary -> literal .)
+    VAR             reduce using rule 49 (primary -> literal .)
+    IDENTIFIER      reduce using rule 49 (primary -> literal .)
+    IF              reduce using rule 49 (primary -> literal .)
+    PRINT           reduce using rule 49 (primary -> literal .)
+    AND_OP          reduce using rule 49 (primary -> literal .)
+    INTEGER         reduce using rule 49 (primary -> literal .)
+    STRING          reduce using rule 49 (primary -> literal .)
+    TRUE            reduce using rule 49 (primary -> literal .)
+    FALSE           reduce using rule 49 (primary -> literal .)
+    $end            reduce using rule 49 (primary -> literal .)
+
+
+state 11
+
+    (0) S' -> program .
+
+
+
+state 12
+
+    (2) statements -> statement .
+
+    LET             reduce using rule 2 (statements -> statement .)
+    VAR             reduce using rule 2 (statements -> statement .)
+    IDENTIFIER      reduce using rule 2 (statements -> statement .)
+    IF              reduce using rule 2 (statements -> statement .)
+    PRINT           reduce using rule 2 (statements -> statement .)
+    AND_OP          reduce using rule 2 (statements -> statement .)
+    INTEGER         reduce using rule 2 (statements -> statement .)
+    STRING          reduce using rule 2 (statements -> statement .)
+    TRUE            reduce using rule 2 (statements -> statement .)
+    FALSE           reduce using rule 2 (statements -> statement .)
+    $end            reduce using rule 2 (statements -> statement .)
+    RCURLY          reduce using rule 2 (statements -> statement .)
+
+
+state 13
+
+    (44) term -> factor .
+    (45) term -> factor . multiOP term
+    (46) multiOP -> . MULT
+    (47) multiOP -> . DIV
+
+    PLUS            reduce using rule 44 (term -> factor .)
+    MINUS           reduce using rule 44 (term -> factor .)
+    LT_OP           reduce using rule 44 (term -> factor .)
+    LE_OP           reduce using rule 44 (term -> factor .)
+    GT_OP           reduce using rule 44 (term -> factor .)
+    GE_OP           reduce using rule 44 (term -> factor .)
+    EQ_OP           reduce using rule 44 (term -> factor .)
+    NE_OP           reduce using rule 44 (term -> factor .)
+    OR_OP           reduce using rule 44 (term -> factor .)
+    LET             reduce using rule 44 (term -> factor .)
+    VAR             reduce using rule 44 (term -> factor .)
+    IDENTIFIER      reduce using rule 44 (term -> factor .)
+    IF              reduce using rule 44 (term -> factor .)
+    PRINT           reduce using rule 44 (term -> factor .)
+    AND_OP          reduce using rule 44 (term -> factor .)
+    INTEGER         reduce using rule 44 (term -> factor .)
+    STRING          reduce using rule 44 (term -> factor .)
+    TRUE            reduce using rule 44 (term -> factor .)
+    FALSE           reduce using rule 44 (term -> factor .)
+    $end            reduce using rule 44 (term -> factor .)
+    RCURLY          reduce using rule 44 (term -> factor .)
+    MULT            shift and go to state 46
+    DIV             shift and go to state 45
+
+    multiOP                        shift and go to state 44
+
+state 14
+
+    (8) statement -> print .
+
+    RCURLY          reduce using rule 8 (statement -> print .)
+    LET             reduce using rule 8 (statement -> print .)
+    VAR             reduce using rule 8 (statement -> print .)
+    IDENTIFIER      reduce using rule 8 (statement -> print .)
+    IF              reduce using rule 8 (statement -> print .)
+    PRINT           reduce using rule 8 (statement -> print .)
+    AND_OP          reduce using rule 8 (statement -> print .)
+    INTEGER         reduce using rule 8 (statement -> print .)
+    STRING          reduce using rule 8 (statement -> print .)
+    TRUE            reduce using rule 8 (statement -> print .)
+    FALSE           reduce using rule 8 (statement -> print .)
+    $end            reduce using rule 8 (statement -> print .)
+
+
+state 15
+
+    (50) literal -> INTEGER .
+
+    MULT            reduce using rule 50 (literal -> INTEGER .)
+    DIV             reduce using rule 50 (literal -> INTEGER .)
+    PLUS            reduce using rule 50 (literal -> INTEGER .)
+    MINUS           reduce using rule 50 (literal -> INTEGER .)
+    LT_OP           reduce using rule 50 (literal -> INTEGER .)
+    LE_OP           reduce using rule 50 (literal -> INTEGER .)
+    GT_OP           reduce using rule 50 (literal -> INTEGER .)
+    GE_OP           reduce using rule 50 (literal -> INTEGER .)
+    EQ_OP           reduce using rule 50 (literal -> INTEGER .)
+    NE_OP           reduce using rule 50 (literal -> INTEGER .)
+    OR_OP           reduce using rule 50 (literal -> INTEGER .)
+    LET             reduce using rule 50 (literal -> INTEGER .)
+    VAR             reduce using rule 50 (literal -> INTEGER .)
+    IDENTIFIER      reduce using rule 50 (literal -> INTEGER .)
+    IF              reduce using rule 50 (literal -> INTEGER .)
+    PRINT           reduce using rule 50 (literal -> INTEGER .)
+    AND_OP          reduce using rule 50 (literal -> INTEGER .)
+    INTEGER         reduce using rule 50 (literal -> INTEGER .)
+    STRING          reduce using rule 50 (literal -> INTEGER .)
+    TRUE            reduce using rule 50 (literal -> INTEGER .)
+    FALSE           reduce using rule 50 (literal -> INTEGER .)
+    $end            reduce using rule 50 (literal -> INTEGER .)
+    RCURLY          reduce using rule 50 (literal -> INTEGER .)
+
+
+state 16
+
+    (9) variable_Reduce -> IDENTIFIER . EQUALS expression
+    (52) literal -> IDENTIFIER .
+
+    EQUALS          shift and go to state 47
+    MULT            reduce using rule 52 (literal -> IDENTIFIER .)
+    DIV             reduce using rule 52 (literal -> IDENTIFIER .)
+    PLUS            reduce using rule 52 (literal -> IDENTIFIER .)
+    MINUS           reduce using rule 52 (literal -> IDENTIFIER .)
+    LT_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    LE_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    GT_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    GE_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    EQ_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    NE_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    OR_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    LET             reduce using rule 52 (literal -> IDENTIFIER .)
+    VAR             reduce using rule 52 (literal -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 52 (literal -> IDENTIFIER .)
+    IF              reduce using rule 52 (literal -> IDENTIFIER .)
+    PRINT           reduce using rule 52 (literal -> IDENTIFIER .)
+    AND_OP          reduce using rule 52 (literal -> IDENTIFIER .)
+    INTEGER         reduce using rule 52 (literal -> IDENTIFIER .)
+    STRING          reduce using rule 52 (literal -> IDENTIFIER .)
+    TRUE            reduce using rule 52 (literal -> IDENTIFIER .)
+    FALSE           reduce using rule 52 (literal -> IDENTIFIER .)
+    $end            reduce using rule 52 (literal -> IDENTIFIER .)
+    RCURLY          reduce using rule 52 (literal -> IDENTIFIER .)
+
+
+state 17
+
+    (51) literal -> STRING .
+
+    MULT            reduce using rule 51 (literal -> STRING .)
+    DIV             reduce using rule 51 (literal -> STRING .)
+    PLUS            reduce using rule 51 (literal -> STRING .)
+    MINUS           reduce using rule 51 (literal -> STRING .)
+    LT_OP           reduce using rule 51 (literal -> STRING .)
+    LE_OP           reduce using rule 51 (literal -> STRING .)
+    GT_OP           reduce using rule 51 (literal -> STRING .)
+    GE_OP           reduce using rule 51 (literal -> STRING .)
+    EQ_OP           reduce using rule 51 (literal -> STRING .)
+    NE_OP           reduce using rule 51 (literal -> STRING .)
+    OR_OP           reduce using rule 51 (literal -> STRING .)
+    LET             reduce using rule 51 (literal -> STRING .)
+    VAR             reduce using rule 51 (literal -> STRING .)
+    IDENTIFIER      reduce using rule 51 (literal -> STRING .)
+    IF              reduce using rule 51 (literal -> STRING .)
+    PRINT           reduce using rule 51 (literal -> STRING .)
+    AND_OP          reduce using rule 51 (literal -> STRING .)
+    INTEGER         reduce using rule 51 (literal -> STRING .)
+    STRING          reduce using rule 51 (literal -> STRING .)
+    TRUE            reduce using rule 51 (literal -> STRING .)
+    FALSE           reduce using rule 51 (literal -> STRING .)
+    $end            reduce using rule 51 (literal -> STRING .)
+    RCURLY          reduce using rule 51 (literal -> STRING .)
+
+
+state 18
+
+    (27) conjunction -> AND_OP . equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    equality                       shift and go to state 48
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 3
+    factor                         shift and go to state 13
+
+state 19
+
+    (5) statement -> variable_Dec .
+
+    RCURLY          reduce using rule 5 (statement -> variable_Dec .)
+    LET             reduce using rule 5 (statement -> variable_Dec .)
+    VAR             reduce using rule 5 (statement -> variable_Dec .)
+    IDENTIFIER      reduce using rule 5 (statement -> variable_Dec .)
+    IF              reduce using rule 5 (statement -> variable_Dec .)
+    PRINT           reduce using rule 5 (statement -> variable_Dec .)
+    AND_OP          reduce using rule 5 (statement -> variable_Dec .)
+    INTEGER         reduce using rule 5 (statement -> variable_Dec .)
+    STRING          reduce using rule 5 (statement -> variable_Dec .)
+    TRUE            reduce using rule 5 (statement -> variable_Dec .)
+    FALSE           reduce using rule 5 (statement -> variable_Dec .)
+    $end            reduce using rule 5 (statement -> variable_Dec .)
+
+
+state 20
+
+    (11) variable_Dec -> VAR . IDENTIFIER EQUALS expression
+
+    IDENTIFIER      shift and go to state 50
+
+
+state 21
+
+    (24) expression -> conjunction .
+    (25) expression -> conjunction . OR_OP expression
+
+    RCURLY          reduce using rule 24 (expression -> conjunction .)
+    LET             reduce using rule 24 (expression -> conjunction .)
+    VAR             reduce using rule 24 (expression -> conjunction .)
+    IDENTIFIER      reduce using rule 24 (expression -> conjunction .)
+    IF              reduce using rule 24 (expression -> conjunction .)
+    PRINT           reduce using rule 24 (expression -> conjunction .)
+    AND_OP          reduce using rule 24 (expression -> conjunction .)
+    INTEGER         reduce using rule 24 (expression -> conjunction .)
+    STRING          reduce using rule 24 (expression -> conjunction .)
+    TRUE            reduce using rule 24 (expression -> conjunction .)
+    FALSE           reduce using rule 24 (expression -> conjunction .)
+    $end            reduce using rule 24 (expression -> conjunction .)
+    OR_OP           shift and go to state 51
+
+
+state 22
+
+    (40) addition -> term .
+    (41) addition -> term . additionOP addition
+    (42) additionOP -> . PLUS
+    (43) additionOP -> . MINUS
+
+    LT_OP           reduce using rule 40 (addition -> term .)
+    LE_OP           reduce using rule 40 (addition -> term .)
+    GT_OP           reduce using rule 40 (addition -> term .)
+    GE_OP           reduce using rule 40 (addition -> term .)
+    EQ_OP           reduce using rule 40 (addition -> term .)
+    NE_OP           reduce using rule 40 (addition -> term .)
+    OR_OP           reduce using rule 40 (addition -> term .)
+    LET             reduce using rule 40 (addition -> term .)
+    VAR             reduce using rule 40 (addition -> term .)
+    IDENTIFIER      reduce using rule 40 (addition -> term .)
+    IF              reduce using rule 40 (addition -> term .)
+    PRINT           reduce using rule 40 (addition -> term .)
+    AND_OP          reduce using rule 40 (addition -> term .)
+    INTEGER         reduce using rule 40 (addition -> term .)
+    STRING          reduce using rule 40 (addition -> term .)
+    TRUE            reduce using rule 40 (addition -> term .)
+    FALSE           reduce using rule 40 (addition -> term .)
+    $end            reduce using rule 40 (addition -> term .)
+    RCURLY          reduce using rule 40 (addition -> term .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+
+    additionOP                     shift and go to state 54
+
+state 23
+
+    (7) statement -> if_statement .
+
+    RCURLY          reduce using rule 7 (statement -> if_statement .)
+    LET             reduce using rule 7 (statement -> if_statement .)
+    VAR             reduce using rule 7 (statement -> if_statement .)
+    IDENTIFIER      reduce using rule 7 (statement -> if_statement .)
+    IF              reduce using rule 7 (statement -> if_statement .)
+    PRINT           reduce using rule 7 (statement -> if_statement .)
+    AND_OP          reduce using rule 7 (statement -> if_statement .)
+    INTEGER         reduce using rule 7 (statement -> if_statement .)
+    STRING          reduce using rule 7 (statement -> if_statement .)
+    TRUE            reduce using rule 7 (statement -> if_statement .)
+    FALSE           reduce using rule 7 (statement -> if_statement .)
+    $end            reduce using rule 7 (statement -> if_statement .)
+
+
+state 24
+
+    (26) conjunction -> equality .
+
+    OR_OP           reduce using rule 26 (conjunction -> equality .)
+    RCURLY          reduce using rule 26 (conjunction -> equality .)
+    LET             reduce using rule 26 (conjunction -> equality .)
+    VAR             reduce using rule 26 (conjunction -> equality .)
+    IDENTIFIER      reduce using rule 26 (conjunction -> equality .)
+    IF              reduce using rule 26 (conjunction -> equality .)
+    PRINT           reduce using rule 26 (conjunction -> equality .)
+    AND_OP          reduce using rule 26 (conjunction -> equality .)
+    INTEGER         reduce using rule 26 (conjunction -> equality .)
+    STRING          reduce using rule 26 (conjunction -> equality .)
+    TRUE            reduce using rule 26 (conjunction -> equality .)
+    FALSE           reduce using rule 26 (conjunction -> equality .)
+    $end            reduce using rule 26 (conjunction -> equality .)
+
+
+state 25
+
+    (10) variable_Dec -> LET . IDENTIFIER EQUALS expression
+
+    IDENTIFIER      shift and go to state 55
+
+
+state 26
+
+    (4) statement -> expression .
+
+    RCURLY          reduce using rule 4 (statement -> expression .)
+    LET             reduce using rule 4 (statement -> expression .)
+    VAR             reduce using rule 4 (statement -> expression .)
+    IDENTIFIER      reduce using rule 4 (statement -> expression .)
+    IF              reduce using rule 4 (statement -> expression .)
+    PRINT           reduce using rule 4 (statement -> expression .)
+    AND_OP          reduce using rule 4 (statement -> expression .)
+    INTEGER         reduce using rule 4 (statement -> expression .)
+    STRING          reduce using rule 4 (statement -> expression .)
+    TRUE            reduce using rule 4 (statement -> expression .)
+    FALSE           reduce using rule 4 (statement -> expression .)
+    $end            reduce using rule 4 (statement -> expression .)
+
+
+state 27
+
+    (3) statements -> statements statement .
+
+    LET             reduce using rule 3 (statements -> statements statement .)
+    VAR             reduce using rule 3 (statements -> statements statement .)
+    IDENTIFIER      reduce using rule 3 (statements -> statements statement .)
+    IF              reduce using rule 3 (statements -> statements statement .)
+    PRINT           reduce using rule 3 (statements -> statements statement .)
+    AND_OP          reduce using rule 3 (statements -> statements statement .)
+    INTEGER         reduce using rule 3 (statements -> statements statement .)
+    STRING          reduce using rule 3 (statements -> statements statement .)
+    TRUE            reduce using rule 3 (statements -> statements statement .)
+    FALSE           reduce using rule 3 (statements -> statements statement .)
+    $end            reduce using rule 3 (statements -> statements statement .)
+    RCURLY          reduce using rule 3 (statements -> statements statement .)
+
+
+state 28
+
+    (31) equality -> relation equalityOP . equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    equality                       shift and go to state 56
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 3
+    factor                         shift and go to state 13
+
+state 29
+
+    (32) equalityOP -> EQ_OP .
+
+    INTEGER         reduce using rule 32 (equalityOP -> EQ_OP .)
+    IDENTIFIER      reduce using rule 32 (equalityOP -> EQ_OP .)
+    STRING          reduce using rule 32 (equalityOP -> EQ_OP .)
+    TRUE            reduce using rule 32 (equalityOP -> EQ_OP .)
+    FALSE           reduce using rule 32 (equalityOP -> EQ_OP .)
+
+
+state 30
+
+    (33) equalityOP -> NE_OP .
+
+    INTEGER         reduce using rule 33 (equalityOP -> NE_OP .)
+    IDENTIFIER      reduce using rule 33 (equalityOP -> NE_OP .)
+    STRING          reduce using rule 33 (equalityOP -> NE_OP .)
+    TRUE            reduce using rule 33 (equalityOP -> NE_OP .)
+    FALSE           reduce using rule 33 (equalityOP -> NE_OP .)
+
+
+state 31
+
+    (56) thing -> IDENTIFIER .
+
+    EQ_OP           reduce using rule 56 (thing -> IDENTIFIER .)
+    NE_OP           reduce using rule 56 (thing -> IDENTIFIER .)
+    LT_OP           reduce using rule 56 (thing -> IDENTIFIER .)
+    LE_OP           reduce using rule 56 (thing -> IDENTIFIER .)
+    GT_OP           reduce using rule 56 (thing -> IDENTIFIER .)
+    GE_OP           reduce using rule 56 (thing -> IDENTIFIER .)
+    LCURLY          reduce using rule 56 (thing -> IDENTIFIER .)
+
+
+state 32
+
+    (16) if_statement -> IF cond_statement . code_section
+    (17) if_statement -> IF cond_statement . code_section else_statement
+    (20) code_section -> . LCURLY statements RCURLY
+
+    LCURLY          shift and go to state 57
+
+    code_section                   shift and go to state 58
+
+state 33
+
+    (57) thing -> STRING .
+
+    EQ_OP           reduce using rule 57 (thing -> STRING .)
+    NE_OP           reduce using rule 57 (thing -> STRING .)
+    LT_OP           reduce using rule 57 (thing -> STRING .)
+    LE_OP           reduce using rule 57 (thing -> STRING .)
+    GT_OP           reduce using rule 57 (thing -> STRING .)
+    GE_OP           reduce using rule 57 (thing -> STRING .)
+    LCURLY          reduce using rule 57 (thing -> STRING .)
+
+
+state 34
+
+    (55) thing -> INTEGER .
+
+    EQ_OP           reduce using rule 55 (thing -> INTEGER .)
+    NE_OP           reduce using rule 55 (thing -> INTEGER .)
+    LT_OP           reduce using rule 55 (thing -> INTEGER .)
+    LE_OP           reduce using rule 55 (thing -> INTEGER .)
+    GT_OP           reduce using rule 55 (thing -> INTEGER .)
+    GE_OP           reduce using rule 55 (thing -> INTEGER .)
+    LCURLY          reduce using rule 55 (thing -> INTEGER .)
+
+
+state 35
+
+    (21) cond_statement -> thing . booleanOP thing
+    (28) booleanOP -> . equalityOP
+    (29) booleanOP -> . relationOP
+    (32) equalityOP -> . EQ_OP
+    (33) equalityOP -> . NE_OP
+    (36) relationOP -> . LT_OP
+    (37) relationOP -> . LE_OP
+    (38) relationOP -> . GT_OP
+    (39) relationOP -> . GE_OP
+
+    EQ_OP           shift and go to state 29
+    NE_OP           shift and go to state 30
+    LT_OP           shift and go to state 41
+    LE_OP           shift and go to state 39
+    GT_OP           shift and go to state 42
+    GE_OP           shift and go to state 43
+
+    booleanOP                      shift and go to state 59
+    relationOP                     shift and go to state 60
+    equalityOP                     shift and go to state 61
+
+state 36
+
+    (23) cond_statement -> FALSE .
+
+    LCURLY          reduce using rule 23 (cond_statement -> FALSE .)
+
+
+state 37
+
+    (22) cond_statement -> TRUE .
+
+    LCURLY          reduce using rule 22 (cond_statement -> TRUE .)
+
+
+state 38
+
+    (12) print -> PRINT LPAREN . RPAREN
+    (13) print -> PRINT LPAREN . IDENTIFIER RPAREN
+    (14) print -> PRINT LPAREN . INTEGER RPAREN
+    (15) print -> PRINT LPAREN . STRING RPAREN
+
+    RPAREN          shift and go to state 62
+    IDENTIFIER      shift and go to state 65
+    INTEGER         shift and go to state 64
+    STRING          shift and go to state 63
+
+
+state 39
+
+    (37) relationOP -> LE_OP .
+
+    INTEGER         reduce using rule 37 (relationOP -> LE_OP .)
+    IDENTIFIER      reduce using rule 37 (relationOP -> LE_OP .)
+    STRING          reduce using rule 37 (relationOP -> LE_OP .)
+    TRUE            reduce using rule 37 (relationOP -> LE_OP .)
+    FALSE           reduce using rule 37 (relationOP -> LE_OP .)
+
+
+state 40
+
+    (35) relation -> addition relationOP . relation
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 66
+    factor                         shift and go to state 13
+
+state 41
+
+    (36) relationOP -> LT_OP .
+
+    INTEGER         reduce using rule 36 (relationOP -> LT_OP .)
+    IDENTIFIER      reduce using rule 36 (relationOP -> LT_OP .)
+    STRING          reduce using rule 36 (relationOP -> LT_OP .)
+    TRUE            reduce using rule 36 (relationOP -> LT_OP .)
+    FALSE           reduce using rule 36 (relationOP -> LT_OP .)
+
+
+state 42
+
+    (38) relationOP -> GT_OP .
+
+    INTEGER         reduce using rule 38 (relationOP -> GT_OP .)
+    IDENTIFIER      reduce using rule 38 (relationOP -> GT_OP .)
+    STRING          reduce using rule 38 (relationOP -> GT_OP .)
+    TRUE            reduce using rule 38 (relationOP -> GT_OP .)
+    FALSE           reduce using rule 38 (relationOP -> GT_OP .)
+
+
+state 43
+
+    (39) relationOP -> GE_OP .
+
+    INTEGER         reduce using rule 39 (relationOP -> GE_OP .)
+    IDENTIFIER      reduce using rule 39 (relationOP -> GE_OP .)
+    STRING          reduce using rule 39 (relationOP -> GE_OP .)
+    TRUE            reduce using rule 39 (relationOP -> GE_OP .)
+    FALSE           reduce using rule 39 (relationOP -> GE_OP .)
+
+
+state 44
+
+    (45) term -> factor multiOP . term
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 67
+    literal                        shift and go to state 10
+    primary                        shift and go to state 2
+    factor                         shift and go to state 13
+
+state 45
+
+    (47) multiOP -> DIV .
+
+    INTEGER         reduce using rule 47 (multiOP -> DIV .)
+    STRING          reduce using rule 47 (multiOP -> DIV .)
+    IDENTIFIER      reduce using rule 47 (multiOP -> DIV .)
+    TRUE            reduce using rule 47 (multiOP -> DIV .)
+    FALSE           reduce using rule 47 (multiOP -> DIV .)
+
+
+state 46
+
+    (46) multiOP -> MULT .
+
+    INTEGER         reduce using rule 46 (multiOP -> MULT .)
+    STRING          reduce using rule 46 (multiOP -> MULT .)
+    IDENTIFIER      reduce using rule 46 (multiOP -> MULT .)
+    TRUE            reduce using rule 46 (multiOP -> MULT .)
+    FALSE           reduce using rule 46 (multiOP -> MULT .)
+
+
+state 47
+
+    (9) variable_Reduce -> IDENTIFIER EQUALS . expression
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    equality                       shift and go to state 24
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 3
+    factor                         shift and go to state 13
+    conjunction                    shift and go to state 21
+    expression                     shift and go to state 68
+
+state 48
+
+    (27) conjunction -> AND_OP equality .
+
+    OR_OP           reduce using rule 27 (conjunction -> AND_OP equality .)
+    RCURLY          reduce using rule 27 (conjunction -> AND_OP equality .)
+    LET             reduce using rule 27 (conjunction -> AND_OP equality .)
+    VAR             reduce using rule 27 (conjunction -> AND_OP equality .)
+    IDENTIFIER      reduce using rule 27 (conjunction -> AND_OP equality .)
+    IF              reduce using rule 27 (conjunction -> AND_OP equality .)
+    PRINT           reduce using rule 27 (conjunction -> AND_OP equality .)
+    AND_OP          reduce using rule 27 (conjunction -> AND_OP equality .)
+    INTEGER         reduce using rule 27 (conjunction -> AND_OP equality .)
+    STRING          reduce using rule 27 (conjunction -> AND_OP equality .)
+    TRUE            reduce using rule 27 (conjunction -> AND_OP equality .)
+    FALSE           reduce using rule 27 (conjunction -> AND_OP equality .)
+    $end            reduce using rule 27 (conjunction -> AND_OP equality .)
+
+
+state 49
+
+    (52) literal -> IDENTIFIER .
+
+    MULT            reduce using rule 52 (literal -> IDENTIFIER .)
+    DIV             reduce using rule 52 (literal -> IDENTIFIER .)
+    PLUS            reduce using rule 52 (literal -> IDENTIFIER .)
+    MINUS           reduce using rule 52 (literal -> IDENTIFIER .)
+    LT_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    LE_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    GT_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    GE_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    EQ_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    NE_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    OR_OP           reduce using rule 52 (literal -> IDENTIFIER .)
+    LET             reduce using rule 52 (literal -> IDENTIFIER .)
+    VAR             reduce using rule 52 (literal -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 52 (literal -> IDENTIFIER .)
+    IF              reduce using rule 52 (literal -> IDENTIFIER .)
+    PRINT           reduce using rule 52 (literal -> IDENTIFIER .)
+    AND_OP          reduce using rule 52 (literal -> IDENTIFIER .)
+    INTEGER         reduce using rule 52 (literal -> IDENTIFIER .)
+    STRING          reduce using rule 52 (literal -> IDENTIFIER .)
+    TRUE            reduce using rule 52 (literal -> IDENTIFIER .)
+    FALSE           reduce using rule 52 (literal -> IDENTIFIER .)
+    $end            reduce using rule 52 (literal -> IDENTIFIER .)
+    RCURLY          reduce using rule 52 (literal -> IDENTIFIER .)
+
+
+state 50
+
+    (11) variable_Dec -> VAR IDENTIFIER . EQUALS expression
+
+    EQUALS          shift and go to state 69
+
+
+state 51
+
+    (25) expression -> conjunction OR_OP . expression
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    equality                       shift and go to state 24
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 3
+    factor                         shift and go to state 13
+    conjunction                    shift and go to state 21
+    expression                     shift and go to state 70
+
+state 52
+
+    (42) additionOP -> PLUS .
+
+    INTEGER         reduce using rule 42 (additionOP -> PLUS .)
+    STRING          reduce using rule 42 (additionOP -> PLUS .)
+    IDENTIFIER      reduce using rule 42 (additionOP -> PLUS .)
+    TRUE            reduce using rule 42 (additionOP -> PLUS .)
+    FALSE           reduce using rule 42 (additionOP -> PLUS .)
+
+
+state 53
+
+    (43) additionOP -> MINUS .
+
+    INTEGER         reduce using rule 43 (additionOP -> MINUS .)
+    STRING          reduce using rule 43 (additionOP -> MINUS .)
+    IDENTIFIER      reduce using rule 43 (additionOP -> MINUS .)
+    TRUE            reduce using rule 43 (additionOP -> MINUS .)
+    FALSE           reduce using rule 43 (additionOP -> MINUS .)
+
+
+state 54
+
+    (41) addition -> term additionOP . addition
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    addition                       shift and go to state 71
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    factor                         shift and go to state 13
+
+state 55
+
+    (10) variable_Dec -> LET IDENTIFIER . EQUALS expression
+
+    EQUALS          shift and go to state 72
+
+
+state 56
+
+    (31) equality -> relation equalityOP equality .
+
+    OR_OP           reduce using rule 31 (equality -> relation equalityOP equality .)
+    LET             reduce using rule 31 (equality -> relation equalityOP equality .)
+    VAR             reduce using rule 31 (equality -> relation equalityOP equality .)
+    IDENTIFIER      reduce using rule 31 (equality -> relation equalityOP equality .)
+    IF              reduce using rule 31 (equality -> relation equalityOP equality .)
+    PRINT           reduce using rule 31 (equality -> relation equalityOP equality .)
+    AND_OP          reduce using rule 31 (equality -> relation equalityOP equality .)
+    INTEGER         reduce using rule 31 (equality -> relation equalityOP equality .)
+    STRING          reduce using rule 31 (equality -> relation equalityOP equality .)
+    TRUE            reduce using rule 31 (equality -> relation equalityOP equality .)
+    FALSE           reduce using rule 31 (equality -> relation equalityOP equality .)
+    $end            reduce using rule 31 (equality -> relation equalityOP equality .)
+    RCURLY          reduce using rule 31 (equality -> relation equalityOP equality .)
+
+
+state 57
+
+    (20) code_section -> LCURLY . statements RCURLY
+    (2) statements -> . statement
+    (3) statements -> . statements statement
+    (4) statement -> . expression
+    (5) statement -> . variable_Dec
+    (6) statement -> . variable_Reduce
+    (7) statement -> . if_statement
+    (8) statement -> . print
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (10) variable_Dec -> . LET IDENTIFIER EQUALS expression
+    (11) variable_Dec -> . VAR IDENTIFIER EQUALS expression
+    (9) variable_Reduce -> . IDENTIFIER EQUALS expression
+    (16) if_statement -> . IF cond_statement code_section
+    (17) if_statement -> . IF cond_statement code_section else_statement
+    (12) print -> . PRINT LPAREN RPAREN
+    (13) print -> . PRINT LPAREN IDENTIFIER RPAREN
+    (14) print -> . PRINT LPAREN INTEGER RPAREN
+    (15) print -> . PRINT LPAREN STRING RPAREN
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    LET             shift and go to state 25
+    VAR             shift and go to state 20
+    IDENTIFIER      shift and go to state 16
+    IF              shift and go to state 4
+    PRINT           shift and go to state 5
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    statements                     shift and go to state 73
+    primary                        shift and go to state 2
+    relation                       shift and go to state 3
+    variable_Reduce                shift and go to state 6
+    addition                       shift and go to state 8
+    literal                        shift and go to state 10
+    statement                      shift and go to state 12
+    factor                         shift and go to state 13
+    print                          shift and go to state 14
+    variable_Dec                   shift and go to state 19
+    conjunction                    shift and go to state 21
+    term                           shift and go to state 22
+    if_statement                   shift and go to state 23
+    equality                       shift and go to state 24
+    expression                     shift and go to state 26
+
+state 58
+
+    (16) if_statement -> IF cond_statement code_section .
+    (17) if_statement -> IF cond_statement code_section . else_statement
+    (18) else_statement -> . ELSE code_section
+    (19) else_statement -> . if_statement
+    (16) if_statement -> . IF cond_statement code_section
+    (17) if_statement -> . IF cond_statement code_section else_statement
+
+  ! shift/reduce conflict for IF resolved as shift
+    LET             reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    VAR             reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    IDENTIFIER      reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    PRINT           reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    AND_OP          reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    INTEGER         reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    STRING          reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    TRUE            reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    FALSE           reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    $end            reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    RCURLY          reduce using rule 16 (if_statement -> IF cond_statement code_section .)
+    ELSE            shift and go to state 74
+    IF              shift and go to state 4
+
+  ! IF              [ reduce using rule 16 (if_statement -> IF cond_statement code_section .) ]
+
+    else_statement                 shift and go to state 76
+    if_statement                   shift and go to state 75
+
+state 59
+
+    (21) cond_statement -> thing booleanOP . thing
+    (55) thing -> . INTEGER
+    (56) thing -> . IDENTIFIER
+    (57) thing -> . STRING
+
+    INTEGER         shift and go to state 34
+    IDENTIFIER      shift and go to state 31
+    STRING          shift and go to state 33
+
+    thing                          shift and go to state 77
+
+state 60
+
+    (29) booleanOP -> relationOP .
+
+    INTEGER         reduce using rule 29 (booleanOP -> relationOP .)
+    IDENTIFIER      reduce using rule 29 (booleanOP -> relationOP .)
+    STRING          reduce using rule 29 (booleanOP -> relationOP .)
+
+
+state 61
+
+    (28) booleanOP -> equalityOP .
+
+    INTEGER         reduce using rule 28 (booleanOP -> equalityOP .)
+    IDENTIFIER      reduce using rule 28 (booleanOP -> equalityOP .)
+    STRING          reduce using rule 28 (booleanOP -> equalityOP .)
+
+
+state 62
+
+    (12) print -> PRINT LPAREN RPAREN .
+
+    RCURLY          reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    LET             reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    VAR             reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    IDENTIFIER      reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    IF              reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    PRINT           reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    AND_OP          reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    INTEGER         reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    STRING          reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    TRUE            reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    FALSE           reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+    $end            reduce using rule 12 (print -> PRINT LPAREN RPAREN .)
+
+
+state 63
+
+    (15) print -> PRINT LPAREN STRING . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 64
+
+    (14) print -> PRINT LPAREN INTEGER . RPAREN
+
+    RPAREN          shift and go to state 79
+
+
+state 65
+
+    (13) print -> PRINT LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 80
+
+
+state 66
+
+    (35) relation -> addition relationOP relation .
+
+    EQ_OP           reduce using rule 35 (relation -> addition relationOP relation .)
+    NE_OP           reduce using rule 35 (relation -> addition relationOP relation .)
+    OR_OP           reduce using rule 35 (relation -> addition relationOP relation .)
+    LET             reduce using rule 35 (relation -> addition relationOP relation .)
+    VAR             reduce using rule 35 (relation -> addition relationOP relation .)
+    IDENTIFIER      reduce using rule 35 (relation -> addition relationOP relation .)
+    IF              reduce using rule 35 (relation -> addition relationOP relation .)
+    PRINT           reduce using rule 35 (relation -> addition relationOP relation .)
+    AND_OP          reduce using rule 35 (relation -> addition relationOP relation .)
+    INTEGER         reduce using rule 35 (relation -> addition relationOP relation .)
+    STRING          reduce using rule 35 (relation -> addition relationOP relation .)
+    TRUE            reduce using rule 35 (relation -> addition relationOP relation .)
+    FALSE           reduce using rule 35 (relation -> addition relationOP relation .)
+    $end            reduce using rule 35 (relation -> addition relationOP relation .)
+    RCURLY          reduce using rule 35 (relation -> addition relationOP relation .)
+
+
+state 67
+
+    (45) term -> factor multiOP term .
+
+    PLUS            reduce using rule 45 (term -> factor multiOP term .)
+    MINUS           reduce using rule 45 (term -> factor multiOP term .)
+    LT_OP           reduce using rule 45 (term -> factor multiOP term .)
+    LE_OP           reduce using rule 45 (term -> factor multiOP term .)
+    GT_OP           reduce using rule 45 (term -> factor multiOP term .)
+    GE_OP           reduce using rule 45 (term -> factor multiOP term .)
+    EQ_OP           reduce using rule 45 (term -> factor multiOP term .)
+    NE_OP           reduce using rule 45 (term -> factor multiOP term .)
+    OR_OP           reduce using rule 45 (term -> factor multiOP term .)
+    LET             reduce using rule 45 (term -> factor multiOP term .)
+    VAR             reduce using rule 45 (term -> factor multiOP term .)
+    IDENTIFIER      reduce using rule 45 (term -> factor multiOP term .)
+    IF              reduce using rule 45 (term -> factor multiOP term .)
+    PRINT           reduce using rule 45 (term -> factor multiOP term .)
+    AND_OP          reduce using rule 45 (term -> factor multiOP term .)
+    INTEGER         reduce using rule 45 (term -> factor multiOP term .)
+    STRING          reduce using rule 45 (term -> factor multiOP term .)
+    TRUE            reduce using rule 45 (term -> factor multiOP term .)
+    FALSE           reduce using rule 45 (term -> factor multiOP term .)
+    $end            reduce using rule 45 (term -> factor multiOP term .)
+    RCURLY          reduce using rule 45 (term -> factor multiOP term .)
+
+
+state 68
+
+    (9) variable_Reduce -> IDENTIFIER EQUALS expression .
+
+    LET             reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    VAR             reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    IDENTIFIER      reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    IF              reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    PRINT           reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    AND_OP          reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    INTEGER         reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    STRING          reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    TRUE            reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    FALSE           reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    $end            reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+    RCURLY          reduce using rule 9 (variable_Reduce -> IDENTIFIER EQUALS expression .)
+
+
+state 69
+
+    (11) variable_Dec -> VAR IDENTIFIER EQUALS . expression
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    equality                       shift and go to state 24
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 3
+    factor                         shift and go to state 13
+    conjunction                    shift and go to state 21
+    expression                     shift and go to state 81
+
+state 70
+
+    (25) expression -> conjunction OR_OP expression .
+
+    RCURLY          reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    LET             reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    VAR             reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    IDENTIFIER      reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    IF              reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    PRINT           reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    AND_OP          reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    INTEGER         reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    STRING          reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    TRUE            reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    FALSE           reduce using rule 25 (expression -> conjunction OR_OP expression .)
+    $end            reduce using rule 25 (expression -> conjunction OR_OP expression .)
+
+
+state 71
+
+    (41) addition -> term additionOP addition .
+
+    LT_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    LE_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    GT_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    GE_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    EQ_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    NE_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    OR_OP           reduce using rule 41 (addition -> term additionOP addition .)
+    LET             reduce using rule 41 (addition -> term additionOP addition .)
+    VAR             reduce using rule 41 (addition -> term additionOP addition .)
+    IDENTIFIER      reduce using rule 41 (addition -> term additionOP addition .)
+    IF              reduce using rule 41 (addition -> term additionOP addition .)
+    PRINT           reduce using rule 41 (addition -> term additionOP addition .)
+    AND_OP          reduce using rule 41 (addition -> term additionOP addition .)
+    INTEGER         reduce using rule 41 (addition -> term additionOP addition .)
+    STRING          reduce using rule 41 (addition -> term additionOP addition .)
+    TRUE            reduce using rule 41 (addition -> term additionOP addition .)
+    FALSE           reduce using rule 41 (addition -> term additionOP addition .)
+    $end            reduce using rule 41 (addition -> term additionOP addition .)
+    RCURLY          reduce using rule 41 (addition -> term additionOP addition .)
+
+
+state 72
+
+    (10) variable_Dec -> LET IDENTIFIER EQUALS . expression
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    IDENTIFIER      shift and go to state 49
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    term                           shift and go to state 22
+    equality                       shift and go to state 24
+    addition                       shift and go to state 8
+    primary                        shift and go to state 2
+    literal                        shift and go to state 10
+    relation                       shift and go to state 3
+    factor                         shift and go to state 13
+    conjunction                    shift and go to state 21
+    expression                     shift and go to state 82
+
+state 73
+
+    (20) code_section -> LCURLY statements . RCURLY
+    (3) statements -> statements . statement
+    (4) statement -> . expression
+    (5) statement -> . variable_Dec
+    (6) statement -> . variable_Reduce
+    (7) statement -> . if_statement
+    (8) statement -> . print
+    (24) expression -> . conjunction
+    (25) expression -> . conjunction OR_OP expression
+    (10) variable_Dec -> . LET IDENTIFIER EQUALS expression
+    (11) variable_Dec -> . VAR IDENTIFIER EQUALS expression
+    (9) variable_Reduce -> . IDENTIFIER EQUALS expression
+    (16) if_statement -> . IF cond_statement code_section
+    (17) if_statement -> . IF cond_statement code_section else_statement
+    (12) print -> . PRINT LPAREN RPAREN
+    (13) print -> . PRINT LPAREN IDENTIFIER RPAREN
+    (14) print -> . PRINT LPAREN INTEGER RPAREN
+    (15) print -> . PRINT LPAREN STRING RPAREN
+    (26) conjunction -> . equality
+    (27) conjunction -> . AND_OP equality
+    (30) equality -> . relation
+    (31) equality -> . relation equalityOP equality
+    (34) relation -> . addition
+    (35) relation -> . addition relationOP relation
+    (40) addition -> . term
+    (41) addition -> . term additionOP addition
+    (44) term -> . factor
+    (45) term -> . factor multiOP term
+    (48) factor -> . primary
+    (49) primary -> . literal
+    (50) literal -> . INTEGER
+    (51) literal -> . STRING
+    (52) literal -> . IDENTIFIER
+    (53) literal -> . TRUE
+    (54) literal -> . FALSE
+
+    RCURLY          shift and go to state 83
+    LET             shift and go to state 25
+    VAR             shift and go to state 20
+    IDENTIFIER      shift and go to state 16
+    IF              shift and go to state 4
+    PRINT           shift and go to state 5
+    AND_OP          shift and go to state 18
+    INTEGER         shift and go to state 15
+    STRING          shift and go to state 17
+    TRUE            shift and go to state 7
+    FALSE           shift and go to state 9
+
+    primary                        shift and go to state 2
+    relation                       shift and go to state 3
+    variable_Reduce                shift and go to state 6
+    addition                       shift and go to state 8
+    literal                        shift and go to state 10
+    statement                      shift and go to state 27
+    factor                         shift and go to state 13
+    print                          shift and go to state 14
+    variable_Dec                   shift and go to state 19
+    conjunction                    shift and go to state 21
+    term                           shift and go to state 22
+    if_statement                   shift and go to state 23
+    equality                       shift and go to state 24
+    expression                     shift and go to state 26
+
+state 74
+
+    (18) else_statement -> ELSE . code_section
+    (20) code_section -> . LCURLY statements RCURLY
+
+    LCURLY          shift and go to state 57
+
+    code_section                   shift and go to state 84
+
+state 75
+
+    (19) else_statement -> if_statement .
+
+    LET             reduce using rule 19 (else_statement -> if_statement .)
+    VAR             reduce using rule 19 (else_statement -> if_statement .)
+    IDENTIFIER      reduce using rule 19 (else_statement -> if_statement .)
+    IF              reduce using rule 19 (else_statement -> if_statement .)
+    PRINT           reduce using rule 19 (else_statement -> if_statement .)
+    AND_OP          reduce using rule 19 (else_statement -> if_statement .)
+    INTEGER         reduce using rule 19 (else_statement -> if_statement .)
+    STRING          reduce using rule 19 (else_statement -> if_statement .)
+    TRUE            reduce using rule 19 (else_statement -> if_statement .)
+    FALSE           reduce using rule 19 (else_statement -> if_statement .)
+    $end            reduce using rule 19 (else_statement -> if_statement .)
+    RCURLY          reduce using rule 19 (else_statement -> if_statement .)
+
+
+state 76
+
+    (17) if_statement -> IF cond_statement code_section else_statement .
+
+    LET             reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    VAR             reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    IDENTIFIER      reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    IF              reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    PRINT           reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    AND_OP          reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    INTEGER         reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    STRING          reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    TRUE            reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    FALSE           reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    $end            reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+    RCURLY          reduce using rule 17 (if_statement -> IF cond_statement code_section else_statement .)
+
+
+state 77
+
+    (21) cond_statement -> thing booleanOP thing .
+
+    LCURLY          reduce using rule 21 (cond_statement -> thing booleanOP thing .)
+
+
+state 78
+
+    (15) print -> PRINT LPAREN STRING RPAREN .
+
+    RCURLY          reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    LET             reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    VAR             reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    IDENTIFIER      reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    IF              reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    PRINT           reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    AND_OP          reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    INTEGER         reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    STRING          reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    TRUE            reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    FALSE           reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+    $end            reduce using rule 15 (print -> PRINT LPAREN STRING RPAREN .)
+
+
+state 79
+
+    (14) print -> PRINT LPAREN INTEGER RPAREN .
+
+    RCURLY          reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    LET             reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    VAR             reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    IDENTIFIER      reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    IF              reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    PRINT           reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    AND_OP          reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    INTEGER         reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    STRING          reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    TRUE            reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    FALSE           reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+    $end            reduce using rule 14 (print -> PRINT LPAREN INTEGER RPAREN .)
+
+
+state 80
+
+    (13) print -> PRINT LPAREN IDENTIFIER RPAREN .
+
+    RCURLY          reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    LET             reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    VAR             reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    IDENTIFIER      reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    IF              reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    PRINT           reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    AND_OP          reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    INTEGER         reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    STRING          reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    TRUE            reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    FALSE           reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+    $end            reduce using rule 13 (print -> PRINT LPAREN IDENTIFIER RPAREN .)
+
+
+state 81
+
+    (11) variable_Dec -> VAR IDENTIFIER EQUALS expression .
+
+    RCURLY          reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    LET             reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    VAR             reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    IDENTIFIER      reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    IF              reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    PRINT           reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    AND_OP          reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    INTEGER         reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    STRING          reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    TRUE            reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    FALSE           reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+    $end            reduce using rule 11 (variable_Dec -> VAR IDENTIFIER EQUALS expression .)
+
+
+state 82
+
+    (10) variable_Dec -> LET IDENTIFIER EQUALS expression .
+
+    RCURLY          reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    LET             reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    VAR             reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    IDENTIFIER      reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    IF              reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    PRINT           reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    AND_OP          reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    INTEGER         reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    STRING          reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    TRUE            reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    FALSE           reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+    $end            reduce using rule 10 (variable_Dec -> LET IDENTIFIER EQUALS expression .)
+
+
+state 83
+
+    (20) code_section -> LCURLY statements RCURLY .
+
+    LET             reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    VAR             reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    IDENTIFIER      reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    IF              reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    PRINT           reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    AND_OP          reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    INTEGER         reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    STRING          reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    TRUE            reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    FALSE           reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    $end            reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    RCURLY          reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+    ELSE            reduce using rule 20 (code_section -> LCURLY statements RCURLY .)
+
+
+state 84
+
+    (18) else_statement -> ELSE code_section .
+
+    LET             reduce using rule 18 (else_statement -> ELSE code_section .)
+    VAR             reduce using rule 18 (else_statement -> ELSE code_section .)
+    IDENTIFIER      reduce using rule 18 (else_statement -> ELSE code_section .)
+    IF              reduce using rule 18 (else_statement -> ELSE code_section .)
+    PRINT           reduce using rule 18 (else_statement -> ELSE code_section .)
+    AND_OP          reduce using rule 18 (else_statement -> ELSE code_section .)
+    INTEGER         reduce using rule 18 (else_statement -> ELSE code_section .)
+    STRING          reduce using rule 18 (else_statement -> ELSE code_section .)
+    TRUE            reduce using rule 18 (else_statement -> ELSE code_section .)
+    FALSE           reduce using rule 18 (else_statement -> ELSE code_section .)
+    $end            reduce using rule 18 (else_statement -> ELSE code_section .)
+    RCURLY          reduce using rule 18 (else_statement -> ELSE code_section .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IF in state 58 resolved as shift
