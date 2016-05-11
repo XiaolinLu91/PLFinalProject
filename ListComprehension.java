@@ -73,14 +73,14 @@ public class ListComprehension {
         System.out.println("\nSELECT sec_id, avg(DEratio) FROM sto GROUP BY sector");
         sto.stream()
                 .collect(Collectors.groupingBy(Stock::getSector)) // This creates a map with the key of sector and value list of stocks for that sector
-                // {0:[e1,e2,...],1:[e3,e4,....],...}
+                // {'Consumer Goods':[s1,s2,...],'Services':[s3,s4,....],...}
                 .entrySet() // this converts map into set that can be streamed
-                // {0:[e1,e2,...],1:[e3,e4,....],...}
+                // {'Consumer Goods':[s1,s2,...],'Services':[s3,s4,....],...}
                 .stream()
                 .map(kv -> kv.getValue())
-                // we have list of employees for a given dept_id
+                // we have list of stockss for a given sector
                 .forEach(stockList -> {
-                    // empList = [e1,e2,....] from a given department id
+                    // stoList = [s1,s2,....] from a given sector
                     double avg = stockList
                             .stream()
                             .mapToDouble(s -> s.getDE_ratio())
